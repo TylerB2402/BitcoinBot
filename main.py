@@ -79,7 +79,7 @@ def get_percentage_change_24hr():
 def get_percentage_change_day():
   response = requests.get('https://ftx.com/api/futures/BTC-PERP', headers=headers2,cookies=cookies2)
   json_data = json.loads(response.text) # parse response into json format/string
-  percday = json_data['result']['changebod'] # alter string to retrieve what I need
+  percday = json_data['result']['changeBod'] # alter string to retrieve what I need
   return(percday)
 
 @client.event
