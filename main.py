@@ -89,4 +89,4 @@ async def on_message(message):
     percalc24hr = "{:.2%}".format(perc24hr) 
     await message.channel.send(f"""Bitcoin price has changed by {percalc24hr} in the past day.""")
 
-client.run(os.getenv('TOKEN'))
+client.run(process.env.token)
