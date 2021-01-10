@@ -82,7 +82,7 @@ def get_percentage_change_day():
   percday = json_data['result']['changeBod'] # alter string to retrieve what I need
   return(percday)
 
-cookies = {
+cookies3 = {
     '__cfduid': 'd47a98994d84973b8bbc5ee67af418a6b1610054701',
     '_ga': 'GA1.2.2110437517.1610054704',
     '_gid': 'GA1.2.1282873142.1610054704',
@@ -112,11 +112,12 @@ params3 = (
 #  json_data = json.loads(response.text) # parse response into json format/string
 #  currentpnl = json_data['result'][0]['recentPnl'] # alter string to retrieve what I need
 #  return(currentpnl)
+
 def get_current_pnl():
- response = requests.get('https://ftx.com/api/positions', headers=headers, params=params, cookies=cookies)
+ response = requests.get('https://ftx.com/api/positions', headers=headers3, params=params3, cookies=cookies3)
  json_data = json.loads(response.text) # parse response into json format/string
  currentpnl = json_data['result'][0]['recentPnl'] # alter string to retrieve what I need
- return(currentpnl
+ return(currentpnl)
 
 @client.event
 async def on_message(message):
