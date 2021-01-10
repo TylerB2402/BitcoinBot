@@ -102,7 +102,7 @@ params3 = (
 
 def get_current_pnl():
   session = requests.Session()
-  response = session.get('https://ftx.com/api/positions')
+  response = session.get('https://ftx.com/api/positions', headers=headers3,parasms=params3,cookies=session.cookies)
   json_data = json.loads(response.text) # parse response into json format/string
   currentpnl = json_data['result'][0]['recentPnl'] # alter string to retrieve what I need
   return(currentpnl)
