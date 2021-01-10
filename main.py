@@ -43,7 +43,7 @@ def get_price():
   price = json_data['result']['open'] # alter string to retrieve what I need
   return(price)
 
-# parameters for get_percentage_change_1hr request.get & get_percentage_change_24hr
+# parameters for get_percentage_change_1hr request.get & get_percentage_change_24hr & get_percentage_change_day
 headers2 = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0',
     'Accept': '*/*',
@@ -82,8 +82,41 @@ def get_percentage_change_day():
   percday = json_data['result']['changeBod'] # alter string to retrieve what I need
   return(percday)
 
+cookies = {
+    '__cfduid': 'd47a98994d84973b8bbc5ee67af418a6b1610054701',
+    '_ga': 'GA1.2.2110437517.1610054704',
+    '_gid': 'GA1.2.1282873142.1610054704',
+    '__zlcmid': '122jib3PCUWDQ8l',
+}
+
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0',
+    'Accept': '*/*',
+    'Accept-Language': 'en-GB,en;q=0.5',
+    'ftx-client': 'web',
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJ1c2VyfHR5bGVybGVlYmVkZG93QGhvdG1haWwuY28udWsiLCJpc3MiOiJmdHguY29tIiwibmJmIjoxNjEwMjI5OTI5LCJleHAiOjE2MTI4MjE5ODksImF1ZCI6Imh0dHBzOi8vZnRleGNoYW5nZS5jb20vYXBpLyIsImlhdCI6MTYxMDIyOTk4OSwibWZhIjp0cnVlLCJ3aXRoZHJhd2Fsc0Rpc2FibGVkIjpmYWxzZSwiaW50ZXJuYWxUcmFuc2ZlcnNEaXNhYmxlZCI6ZmFsc2UsInJlYWRPbmx5IjpudWxsfQ.dz8X8TCHjUR2lCjcW4GRwLGyfPgUABBolEXrrYyjQzn7xdxrhSUK906UxDuQa-hvYo_JDLCxhwnwr4yTqGk1j3-v6LrY6WQgb-10HWrIPijrG9-0fqq36z2Mj1LRKqpPW06QfhL8To2_ONqKcl4ZoEV-uitZrUcigNjj_EDECA6M_CO6LiJAbej7H-nAKx_D5CeOTJt1rqCK3lBccirqTVqxWQYQqaeKOAbl1w2OayxKtxM3wZ6TbrLHQZOjGPx5NJKUTjz10Jy69sOx82sn08juLppbDoV1vbrXUiVqe5XCWcaQbT11984TzwNvu66nAneIO55ceVQNedh5i_qBNA',
+    'Referer': 'https://ftx.com/trade/BTC-PERP',
+    'Connection': 'keep-alive',
+    'Pragma': 'no-cache',
+    'Cache-Control': 'no-cache',
+    'TE': 'Trailers',
+}
+
+params = (
+    ('showAvgPrice', 'true'),
+)
+
+def get_current_pnl():
+ response = requests.get('https://ftx.com/api/positions', headers=headers, params=params, cookies=cookies)
+  json_data = json.loads(response.text) # parse response into json format/string
+  currentpnl = json_data['0']['recentPnl'] # alter string to retrieve what I need
+  return(currentpnl)
+
 @client.event
 async def on_message(message):
+  if message.content.startswith('!BBHelp'):
+    await message.channel.send("List of commands are !price (gets current price), !1hour (gets percentage difference for the last hour), !24hour (gets percentage difference for the last 24 hours), !day (gets percentage difference from the start of the day (00:00))")
+
   if message.content.startswith('!price'):
     price = get_price()
     await message.channel.send(f"""Current price of bitcoin is ${price}""")
@@ -102,5 +135,9 @@ async def on_message(message):
     percday = get_percentage_change_day()
     percalcday = "{:.2%}".format(percday) 
     await message.channel.send(f"""Bitcoin price has changed by {percalcday} in the past day (from 00:00).""")
+
+  if message.content.startswith('!pnl'):
+    currentpnl = get_current_pnl()
+    await message.author.send(f"""Your PnL is currently at US${currentpnl}.""")
 
 client.run(os.getenv('TOKEN'))
