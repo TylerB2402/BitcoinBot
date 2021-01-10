@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\.github",
-    "\\BitcoinBot.egg-info",
-    "\\build\\bdist.win-amd64"
+    "\\BitcoinBot.egg-info"
   ],
-  "SelectedNode": "\\Procfile",
+  "SelectedNode": "\\main.py",
   "PreviewInSolutionExplorer": false
 }

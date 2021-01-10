@@ -76,6 +76,12 @@ def get_percentage_change_24hr():
   perc24hr = json_data['result']['change24h'] # alter string to retrieve what I need
   return(perc24hr)
 
+def get_percentage_change_day():
+  response = requests.get('https://ftx.com/api/futures/BTC-PERP', headers=headers2,cookies=cookies2)
+  json_data = json.loads(response.text) # parse response into json format/string
+  perc24hr = json_data['result']['changebod'] # alter string to retrieve what I need
+  return(percday)
+
 @client.event
 async def on_message(message):
   if message.content.startswith('!price'):
@@ -90,6 +96,11 @@ async def on_message(message):
   if message.content.startswith('!24hour'):
     perc24hr = get_percentage_change_24hr()
     percalc24hr = "{:.2%}".format(perc24hr) 
-    await message.channel.send(f"""Bitcoin price has changed by {percalc24hr} in the past day.""")
+    await message.channel.send(f"""Bitcoin price has changed by {percalc24hr} in the past 24 hours.""")
+
+  if message.content.startswith('!day'):
+    perc24hr = get_percentage_change_day()
+    percalc24hr = "{:.2%}".format(percday) 
+    await message.channel.send(f"""Bitcoin price has changed by {percalcday} in the past day.""")
 
 client.run(os.getenv('TOKEN'))
