@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: BitcoinBot
+Version: 0.0.1
+Summary: Bot for referencing bitcoin information on discord
+Home-page: https://github.com/TylerB2402/BitcoinBot
+Author: Tyler Beddow
+Author-email: tylerleebeddow@gmail.com
+License: UNKNOWN
+Description: N/a
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown

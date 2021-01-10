@@ -1,0 +1,6 @@
+README.md
+setup.py
+BitcoinBot.egg-info/PKG-INFO
+BitcoinBot.egg-info/SOURCES.txt
+BitcoinBot.egg-info/dependency_links.txt
+BitcoinBot.egg-info/top_level.txt
