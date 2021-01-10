@@ -101,6 +101,6 @@ async def on_message(message):
   if message.content.startswith('!day'):
     perc24hr = get_percentage_change_day()
     percalc24hr = "{:.2%}".format(percday) 
-    await message.channel.send(f"""Bitcoin price has changed by {percalcday} in the past day.""")
+    await message.channel.send(f"""Bitcoin price has changed by {percalcday} in the past day (from 00:00).""")
 
 client.run(os.getenv('TOKEN'))
