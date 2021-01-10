@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\.github"
+    "\\.github",
+    "\\BitcoinBot.egg-info",
+    "\\build\\bdist.win-amd64"
   ],
-  "SelectedNode": "\\LICENSE",
+  "SelectedNode": "\\Procfile",
   "PreviewInSolutionExplorer": false
 }

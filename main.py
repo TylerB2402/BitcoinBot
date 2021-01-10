@@ -44,7 +44,7 @@ def get_price():
   return(price)
 
 # parameters for get_percentage_change_1hr request.get & get_percentage_change_24hr
-headers = {
+headers2 = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0',
     'Accept': '*/*',
     'Accept-Language': 'en-GB,en;q=0.5',
@@ -57,7 +57,7 @@ headers = {
     'TE': 'Trailers',
 }
 
-cookies = {
+cookies2 = {
     '__cfduid': 'd47a98994d84973b8bbc5ee67af418a6b1610054701',
     '_ga': 'GA1.2.2110437517.1610054704',
     '_gid': 'GA1.2.1282873142.1610054704',
@@ -65,13 +65,13 @@ cookies = {
 }
 
 def get_percentage_change_1hr():
- response = requests.get('https://ftx.com/api/futures/BTC-PERP', headers=headers,cookies=cookies)
+ response = requests.get('https://ftx.com/api/futures/BTC-PERP', headers=headers2,cookies=cookies2)
  json_data = json.loads(response.text) # parse response into json format/string
  perc1hr = json_data['result']['change1h'] # alter string to retrieve what I need
  return(perc1hr)
 
 def get_percentage_change_24hr():
-  response = requests.get('https://ftx.com/api/futures/BTC-PERP', headers=headers,cookies=cookies)
+  response = requests.get('https://ftx.com/api/futures/BTC-PERP', headers=headers2,cookies=cookies2)
   json_data = json.loads(response.text) # parse response into json format/string
   perc24hr = json_data['result']['change24h'] # alter string to retrieve what I need
   return(perc24hr)
