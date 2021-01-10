@@ -1,7 +1,10 @@
 import discord
 import os
+from os import environ
 import requests
 import json
+
+ACCESS_KEY = environ['TOKEN']
 
 client = discord.Client()
 
@@ -89,4 +92,4 @@ async def on_message(message):
     percalc24hr = "{:.2%}".format(perc24hr) 
     await message.channel.send(f"""Bitcoin price has changed by {percalc24hr} in the past day.""")
 
-client.run(process.env.token)
+client.run(os.getenv('TOKEN'))
