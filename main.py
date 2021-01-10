@@ -109,7 +109,7 @@ params = (
 def get_current_pnl():
   response = requests.get('https://ftx.com/api/positions', headers=headers, params=params, cookies=cookies)
   json_data = json.loads(response.text) # parse response into json format/string
-  currentpnl = json_data['result']['recentPnl'] # alter string to retrieve what I need
+  currentpnl = json_data['result'][0]['recentPnl'] # alter string to retrieve what I need
   return(currentpnl)
 
 @client.event
