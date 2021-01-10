@@ -107,7 +107,7 @@ params = (
 )
 
 def get_current_pnl():
- response = requests.get('https://ftx.com/api/positions', headers=headers, params=params, cookies=cookies)
+  response = requests.get('https://ftx.com/api/positions', headers=headers, params=params, cookies=cookies)
   json_data = json.loads(response.text) # parse response into json format/string
   currentpnl = json_data['0']['recentPnl'] # alter string to retrieve what I need
   return(currentpnl)
